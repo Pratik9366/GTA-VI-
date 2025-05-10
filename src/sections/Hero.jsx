@@ -33,7 +33,46 @@ const Hero = () => {
   });
 
   useGSAP(() => {
-    if(!showContent) return;
+    if (!showContent) return;
+
+    gsap.to(".main", {
+      scale: 1,
+      rotate: 0,
+      duration: 2,
+      delay: -1,
+      ease: "expo.inOut",
+    });
+    gsap.to(".sky", {
+      scale: 1.2,
+      rotate: 0,
+      duration: 2,
+      delay: -0.8,
+      ease: "expo.inOut",
+    });
+    gsap.to(".bg", {
+      scale: 1.2,
+      rotate: 0,
+      duration: 2,
+      delay: -0.8,
+      ease: "expo.inOut",
+    });
+    gsap.to(".character", {
+      scale: 1.2,
+      x: "-50%",
+      bottom: "-40%",
+      rotate: 0,
+      duration: 2,
+      delay: -0.8,
+      ease: "expo.inOut",
+    });
+    gsap.to(".text", {
+      scale: 1,
+      rotate: 0,
+      duration: 2,
+      delay: -0.8,
+      ease: "expo.inOut",
+    });
+
     const main = document.querySelector(".main");
     main?.addEventListener("mousemove", function (e) {
       const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
@@ -83,8 +122,8 @@ const Hero = () => {
         </svg>
       </div>
       {showContent && (
-        <div className="main w-full">
-          <div className="landing w-full h-screen bg-black">
+        <div className="main w-full rotate-[-10deg] scale-[1.7]">
+          <div className="landing overflow-hidden relative w-full h-screen bg-black">
             <div className="navbar absolute top-0 left-0 z-[10] w-full py-10 px-10">
               <div className="logo flex gap-7">
                 <div className="lines flex flex-col gap-[5px]">
@@ -97,23 +136,23 @@ const Hero = () => {
             </div>
             <div className="imgesdiv relative overflow-hidden w-full h-screen">
               <img
-                className="sky scale-[1.2] absolute top-0 left-0 w-full h-full object-cover"
+                className="sky scale-[1.5] rotate-[-20deg] absolute top-0 left-0 w-full h-full object-cover"
                 src="./sky.png"
               ></img>
               <img
-                className="bg scale-[1.2] absolute top-0 left-0 w-full h-full object-cover"
+                className="bg scale-[1.8] rotate-[-3deg] absolute top-0 left-0 w-full h-full object-cover"
                 src="./bg4.png"
               ></img>
-              <div className="text absolute top-10 left-1/2 -translate-x-1/2 gap-3 flex flex-col">
+              <div className="text absolute top-10 left-1/2 -translate-x-1/2 gap-3 flex flex-col scale-[1.4] rotate-[-10deg]">
                 <h1 className="text-[10rem] leading-none -ml-30">grand</h1>
                 <h1 className="text-[10rem] leading-none ml-20">theft</h1>
                 <h1 className="text-[10rem] leading-none -ml-30">auto </h1>
               </div>
               <img
-                className="character absolute -bottom-[45%] left-1/2 -translate-x-1/2 scale-[1.2]"
+                className="character absolute -bottom-[150%] left-1/2 -translate-x-1/2 scale-[3] rotate-[-20deg]"
                 src="./girlbg.png"
               />
-            </div>
+            </div>     
             <div className="btmbar absolute bottom-0 left-0 w-full py-10 px-10 bg-gradient-to-t from-black to-transparent">
               <div className="flex gap-4 items-center">
                 <i className="text-4xl ri-arrow-down-line"></i>
@@ -151,6 +190,9 @@ const Hero = () => {
                   mollitia repellendus voluptatem animi placeat iste eum atque
                   maiores inventore vero autem consequatur corporis quas ad.
                 </p>
+                <button className="bg-yellow-500 text-4xl py-10 px-10 mt-10 text-black">
+                  Download now
+                </button>
               </div>
             </div>
           </div>

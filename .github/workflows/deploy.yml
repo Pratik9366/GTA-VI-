@@ -1,20 +1,28 @@
-name: gta vi
-on: 
-push:
-branches: [main]
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main] # or master depending on your repo
+
 jobs:
-deploy:
-runs-on: ubuntu-latest
-steps: 
-- uses: actions/checkout@v3
-- name: node.setup
-with: 
-node-version: 18
-- name: install-moduls
-run: npm install
-- name: npm run build
-- name: deploy to github pages
-uses: peaceiris/actions-gh-pages@v3
-with: 
-github_token: ${{secrets.GITHUB_TOKEN}}
-publish_dir: ./dist
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build with environment variables
+        run: npm run build
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

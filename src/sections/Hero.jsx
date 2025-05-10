@@ -32,12 +32,24 @@ const Hero = () => {
       });
   });
 
-  useGSAP(()=>{
+  useGSAP(() => {
+    if(!showContent) return;
     const main = document.querySelector(".main");
-    main?.addEventListener("mousemove", function(e){
-      console.log(e.clientX, e.clientY);
-    })
-  },[showContent])
+    main?.addEventListener("mousemove", function (e) {
+      const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
+      gsap.to(".main .text", {
+        x: `${xMove * 0.4}%`,
+      });
+
+      gsap.to(".sky", {
+        x: `${xMove * 0.4}%`,
+      });
+
+      gsap.to(".bg", {
+        x: `${xMove * 0.4}%`,
+      });
+    });
+  }, [showContent]);
 
   return (
     <>
@@ -85,20 +97,20 @@ const Hero = () => {
             </div>
             <div className="imgesdiv relative overflow-hidden w-full h-screen">
               <img
-                className="absolute top-0 left-0 w-full h-full object-cover"
+                className="sky scale-[1.2] absolute top-0 left-0 w-full h-full object-cover"
                 src="./sky.png"
               ></img>
               <img
-                className="absolute top-0 left-0 w-full h-full object-cover"
+                className="bg scale-[1.2] absolute top-0 left-0 w-full h-full object-cover"
                 src="./bg4.png"
               ></img>
               <div className="text absolute top-10 left-1/2 -translate-x-1/2 gap-3 flex flex-col">
-              <h1 className="text-[10rem] leading-none -ml-30">grand</h1>
-              <h1 className="text-[10rem] leading-none ml-20">theft</h1>
-              <h1 className="text-[10rem] leading-none -ml-30">auto </h1>
-            </div>
+                <h1 className="text-[10rem] leading-none -ml-30">grand</h1>
+                <h1 className="text-[10rem] leading-none ml-20">theft</h1>
+                <h1 className="text-[10rem] leading-none -ml-30">auto </h1>
+              </div>
               <img
-                className="absolute -bottom-[40%] left-1/2 -translate-x-1/2 scale-[1.2]"
+                className="character absolute -bottom-[45%] left-1/2 -translate-x-1/2 scale-[1.2]"
                 src="./girlbg.png"
               />
             </div>
@@ -113,6 +125,33 @@ const Hero = () => {
                 className="absolute h-[45px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 src="./ps5.png"
               ></img>
+            </div>
+          </div>
+          <div className="w-full h-screen flex items-center justify-center">
+            <div className="cntr flex w-full h-[80%]">
+              <div className="limg relative w-1/2 h-full">
+                <img
+                  className="absolute scale-[1.3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./imag.png"
+                ></img>
+              </div>
+              <div className="rg w-[30%] py-30">
+                <h1 className="text-8xl">Still Running</h1>
+                <h1 className="text-8xl">Not Hunting</h1>
+                <p className="mt-10 text-xl font-[Helvetica_Now_Display]">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Itaque obcaecati, nostrum blanditiis officiis mollitia,
+                  incidunt quis inventore minus nesciunt voluptates praesentium
+                  dolores harum maiores sit repellat, unde accusamus aperiam
+                  minima.
+                </p>
+                <p className="mt-3 text-xl font-[Helvetica_Now_Display]">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Provident architecto incidunt doloribus perferendis, a,
+                  mollitia repellendus voluptatem animi placeat iste eum atque
+                  maiores inventore vero autem consequatur corporis quas ad.
+                </p>
+              </div>
             </div>
           </div>
         </div>
